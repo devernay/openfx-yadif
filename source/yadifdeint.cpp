@@ -35,8 +35,8 @@ protected :
 public :
     YadifDeint(OfxImageEffectHandle handle) : ImageEffect(handle), dstClip_(0), srcClip_(0)
     {
-        dstClip_ = fetchClip("Output");
-        srcClip_ = fetchClip("Source");
+        dstClip_ = fetchClip(kOfxImageEffectOutputClipName);
+        srcClip_ = fetchClip(kOfxImageEffectSimpleSourceClipName);
 
         mode = fetchChoiceParam("mode");
         fieldOrder = fetchChoiceParam("fieldOrder");
