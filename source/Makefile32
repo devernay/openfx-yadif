@@ -1,0 +1,159 @@
+####### Compiler, tools and options
+
+CC            = cl
+CXX           = cl
+DEFINES       = -DUNICODE -DWIN32 -D_CRT_SECURE_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE
+CFLAGS        = -nologo -Zm200 -Zc:wchar_t- -arch:SSE2 -fp:fast -O2 -MT -MP -W3 $(DEFINES)
+CXXFLAGS      = -nologo -Zm200 -Zc:wchar_t- -arch:SSE2 -fp:fast -O2 -MT -MP -GR -EHsc -W3 -w34100 -w34189 $(DEFINES)
+INCPATH       = -I"tmp32" -I"..\openfx\include" -I"..\openfx\Support\include"
+LINK          = link
+LFLAGS        = /NOLOGO /INCREMENTAL:NO /DLL /MANIFEST /MANIFESTFILE:"tmp32\Yadif Deinterlace.intermediate.manifest"
+LIBS          =  
+IDL           = midl
+ZIP           = zip -r -9
+DEF_FILE      = 
+RES_FILE      = 
+COPY          = copy /y
+COPY_FILE     = $(COPY)
+COPY_DIR      = xcopy /s /q /y /i
+DEL_FILE      = del
+DEL_DIR       = rmdir
+MOVE          = move
+CHK_DIR_EXISTS= if not exist
+MKDIR         = mkdir
+INSTALL_FILE    = $(COPY_FILE)
+INSTALL_PROGRAM = $(COPY_FILE)
+INSTALL_DIR     = $(COPY_DIR)
+
+####### Output directory
+
+OBJECTS_DIR   = tmp32
+
+####### Files
+
+SOURCES       = yadifdeint.cpp \
+		..\openfx\Support\Library\ofxsCore.cpp \
+		..\openfx\Support\Library\ofxsImageEffect.cpp \
+		..\openfx\Support\Library\ofxsInteract.cpp \
+		..\openfx\Support\Library\ofxsLog.cpp \
+		..\openfx\Support\Library\ofxsMultiThread.cpp \
+		..\openfx\Support\Library\ofxsParams.cpp \
+		..\openfx\Support\Library\ofxsProperty.cpp \
+		..\openfx\Support\Library\ofxsPropertyValidation.cpp 
+OBJECTS       = tmp32\yadifdeint.obj \
+		tmp32\ofxsCore.obj \
+		tmp32\ofxsImageEffect.obj \
+		tmp32\ofxsInteract.obj \
+		tmp32\ofxsLog.obj \
+		tmp32\ofxsMultiThread.obj \
+		tmp32\ofxsParams.obj \
+		tmp32\ofxsProperty.obj \
+		tmp32\ofxsPropertyValidation.obj
+DIST          = 
+QMAKE_TARGET  = Yadif Deinterlace
+DESTDIR        = "Yadif Deinterlace.ofx.bundle\Contents\Win32\" #avoid trailing-slash linebreak
+TARGET         = "Yadif Deinterlace.dll"
+DESTDIR_TARGET = "Yadif Deinterlace.ofx.bundle\Contents\Win32\Yadif Deinterlace.dll"
+
+####### Implicit rules
+
+.SUFFIXES: .c .cpp .cc .cxx
+
+{..\openfx\Support\Library}.cpp{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{..\openfx\Support\Library}.cc{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{..\openfx\Support\Library}.cxx{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{..\openfx\Support\Library}.c{tmp32\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{.}.cpp{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{.}.cc{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{.}.cxx{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{.}.c{tmp32\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{tmp32}.cpp{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{tmp32}.cc{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{tmp32}.cxx{tmp32\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+{tmp32}.c{tmp32\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fotmp32\ @<<
+	$<
+<<
+
+####### Build rules
+
+first: all
+all: Makefile32 $(DESTDIR) $(DESTDIR_TARGET)
+
+$(DESTDIR):
+	if not exist $(DESTDIR) mkdir $(DESTDIR)
+	if not exist tmp32 mkdir tmp32
+
+$(DESTDIR_TARGET):  $(OBJECTS) 
+	$(LINK) $(LFLAGS) /OUT:$(DESTDIR_TARGET) @<< 
+	  $(OBJECTS) $(LIBS)
+<<
+	mt.exe -nologo -manifest "tmp32\Yadif Deinterlace.intermediate.manifest" -outputresource:$(DESTDIR_TARGET);2
+	
+	del "Yadif Deinterlace.ofx.bundle\Contents\Win32\Yadif Deinterlace.lib" "Yadif Deinterlace.ofx.bundle\Contents\Win32\Yadif Deinterlace.exp" 
+	
+
+####### Compile
+
+tmp32\yadifdeint.obj: yadifdeint.cpp 
+
+tmp32\ofxsCore.obj: ..\openfx\Support\Library\ofxsCore.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
+tmp32\ofxsImageEffect.obj: ..\openfx\Support\Library\ofxsImageEffect.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
+tmp32\ofxsInteract.obj: ..\openfx\Support\Library\ofxsInteract.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
+tmp32\ofxsLog.obj: ..\openfx\Support\Library\ofxsLog.cpp 
+
+tmp32\ofxsMultiThread.obj: ..\openfx\Support\Library\ofxsMultiThread.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
+tmp32\ofxsParams.obj: ..\openfx\Support\Library\ofxsParams.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
+tmp32\ofxsProperty.obj: ..\openfx\Support\Library\ofxsProperty.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
+tmp32\ofxsPropertyValidation.obj: ..\openfx\Support\Library\ofxsPropertyValidation.cpp ..\openfx\Support\Library\ofxsSupportPrivate.h
+
