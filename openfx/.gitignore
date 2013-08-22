@@ -1,0 +1,14 @@
+
+*.o
+
+*.ofx
+
+*.a
+
+build
+
+xcuserdata
+
+*.xcworkspace
+
+.DS_Store
