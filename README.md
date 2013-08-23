@@ -22,5 +22,7 @@ The original precompiled MS Windows binary is available from http://www.yohng.co
 Instructions for compilation and installation on MS Windows are in the readme-mswindows.txt file
 
 To build and install on OSX, type in a terminal:
+```
 xcodebuild -configuration Release install
 sudo mv /tmp/yadif.dst/Library/OFX/Plugins/yadif /Library/OFX/Plugins
+```
