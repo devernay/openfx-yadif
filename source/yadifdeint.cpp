@@ -10,7 +10,7 @@
 
 // See the comments in this source
 
-#include <cstdlib>
+#include <cstring>
 #include <cmath>
 #include <algorithm>
 #include "ofxsImageEffect.h"
