@@ -10,7 +10,8 @@
 
 // See the comments in this source
 
-#include <stdio.h>
+#include <cstdlib>
+#include <algorithm>
 #include "ofxsImageEffect.h"
 #include "ofxsMultiThread.h"
 #include "ofxsProcessing.H"
@@ -50,9 +51,12 @@ public :
 
 // =========== GNU General Public License code start =================
 
-#define MIN(a,b) ((a) > (b) ? (b) : (a))
-#define MAX(a,b) ((a) < (b) ? (b) : (a))
-#define ABS(a) ((a) > 0 ? (a) : (-(a)))
+//#define MIN(a,b) ((a) > (b) ? (b) : (a))
+//#define MAX(a,b) ((a) < (b) ? (b) : (a))
+//#define ABS(a) ((a) > 0 ? (a) : (-(a)))
+#define MIN(a,b) std::min(a,b)
+#define MAX(a,b) std::max(a,b)
+#define ABS(a) std::abs(a)
 
 #define MIN3(a,b,c) MIN(MIN(a,b),c)
 #define MAX3(a,b,c) MAX(MAX(a,b),c)
