@@ -10,7 +10,9 @@
 
 // See the comments in this source
 
-#include <stdio.h>
+#include <cstdlib>
+#include <cmath>
+#include <algorithm>
 #include "ofxsImageEffect.h"
 #include "ofxsMultiThread.h"
 #include "ofxsProcessing.H"
@@ -50,9 +52,12 @@ public :
 
 // =========== GNU General Public License code start =================
 
-#define MIN(a,b) ((a) > (b) ? (b) : (a))
-#define MAX(a,b) ((a) < (b) ? (b) : (a))
-#define ABS(a) ((a) > 0 ? (a) : (-(a)))
+//#define MIN(a,b) ((a) > (b) ? (b) : (a))
+//#define MAX(a,b) ((a) < (b) ? (b) : (a))
+//#define ABS(a) ((a) > 0 ? (a) : (-(a)))
+#define MIN(a,b) std::min(a,b)
+#define MAX(a,b) std::max(a,b)
+#define ABS(a) std::abs(a)
 
 #define MIN3(a,b,c) MIN(MIN(a,b),c)
 #define MAX3(a,b,c) MAX(MAX(a,b),c)
@@ -64,7 +69,7 @@ inline int one1(unsigned char *) { return 1; }
 inline float one1(float *) { return 1.0f/256.0f; }
 
 template<int ch,typename Comp,typename Diff>
-inline void filter_line_c(int mode, Comp *dst, const Comp *prev, const Comp *cur, const Comp *next, int w, int refs, int parity){
+inline void filter_line_c(int mode, Comp *dst, const Comp *prev, const Comp *cur, const Comp *next, int w, long refs, int parity){
     int x;
     const Comp *prev2= parity ? prev : cur ;
     const Comp *next2= parity ? cur  : next;
@@ -142,7 +147,7 @@ inline void interpolate(float *dst, const float *cur0,  const float *cur2, int w
 
 
 template<int ch,typename Comp,typename Diff>
-static void filter_plane(int mode, Comp *dst, int dst_stride, const Comp *prev0, const Comp *cur0, const Comp *next0, int refs, int w, int h, int parity, int tff)
+static void filter_plane(int mode, Comp *dst, long dst_stride, const Comp *prev0, const Comp *cur0, const Comp *next0, long refs, int w, int h, int parity, int tff)
 {
 	int y=0;
 
@@ -256,6 +261,9 @@ void YadifDeint::render(const OFX::RenderArguments &args)
                    (float*)src->getPixelAddress(0,1)-(float*)src->getPixelAddress(0,0),
                    width,height,iparity,ifieldOrder); // parity, tff
                 break;
+
+            default:
+                break;
             }
         }else
         if(dstComponents == OFX::ePixelComponentAlpha) 
@@ -283,6 +291,9 @@ void YadifDeint::render(const OFX::RenderArguments &args)
                    (float*)(&*srcn?srcn->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
                    (float*)src->getPixelAddress(0,1)-(float*)src->getPixelAddress(0,0),
                    width,height,iparity,ifieldOrder); // parity, tff
+                break;
+
+            default:
                 break;
             }
         }
