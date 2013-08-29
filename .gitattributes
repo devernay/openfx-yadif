@@ -8,6 +8,7 @@
 *.cpp text
 *.hpp text
 *.pro text
+*.md text
 
 # Declare files that will always have CRLF line endings on checkout.
 *.sln text eol=crlf
