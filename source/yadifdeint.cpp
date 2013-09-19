@@ -275,7 +275,7 @@ void YadifDeint::render(const OFX::RenderArguments &args)
                    (unsigned char*)dst->getPixelAddress(0,0),
                    (unsigned char*)dst->getPixelAddress(0,1)-(unsigned char*)dst->getPixelAddress(0,0),
                    (unsigned char*)(&*srcp?srcp->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
-                   (unsigned char*)src->getRowBytes(),
+                   (unsigned char*)src->getPixelAddress(0,0),
                    (unsigned char*)(&*srcn?srcn->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
                    (unsigned char*)src->getPixelAddress(0,1)-(unsigned char*)src->getPixelAddress(0,0),
                    width,height,iparity,ifieldOrder); // parity, tff
