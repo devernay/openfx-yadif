@@ -152,9 +152,9 @@ static void filter_plane(int mode, Comp *dst, long dst_stride, const Comp *prev0
 	int y=0;
 
     if(((y ^ parity) & 1)) {
-        memcpy(dst, cur0 + refs, w*ch);// duplicate 1
+        memcpy(dst, cur0 + refs, w*ch*sizeof(Comp));// duplicate 1
     }else{
-        memcpy(dst, cur0, w*ch);
+        memcpy(dst, cur0, w*ch*sizeof(Comp));
     }
 
     y=1;
