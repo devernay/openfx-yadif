@@ -184,7 +184,7 @@ static void filter_plane(int mode, Comp *dst, long dst_stride, const Comp *prev0
     if(((y ^ parity) & 1)) {
         interpolate(dst + (h-2)*dst_stride, cur0 + (h-3)*refs, cur0 + (h-1)*refs, w*ch);   // interpolate h-3 and h-1
     }else{
-        memcpy(dst + (h-2)*dst_stride, cur0 + (h-2)*refs, w*ch); // copy original
+      memcpy(dst + (h-2)*dst_stride, cur0 + (h-2)*refs, w*ch*sizeof(Comp)); // copy original
     }
 
     y=h-1;
