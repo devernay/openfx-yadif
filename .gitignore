@@ -2,3 +2,9 @@
 build
 project.xcworkspace
 xcuserdata
+
+*.ofx
+
+*.ofx.bundle
+
+*.o
