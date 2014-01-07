@@ -282,6 +282,7 @@
 					"$(OFX_PATH)/Support/include",
 					"$(OFX_PATH)/Support/Plugins/include",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/../Libraries";
 				OFX_PATH = openfx;
 				ONLY_ACTIVE_ARCH = YES;
 			};
@@ -308,6 +309,7 @@
 					"$(OFX_PATH)/Support/include",
 					"$(OFX_PATH)/Support/Plugins/include",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/../Libraries";
 				OFX_PATH = openfx;
 			};
 			name = Release;
