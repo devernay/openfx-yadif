@@ -26,3 +26,7 @@ To build and install on OSX, type in a terminal:
 xcodebuild -configuration Release install
 sudo mv /tmp/yadif.dst/Library/OFX/Plugins/yadif /Library/OFX/Plugins
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/devernay/openfx-yadif/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
