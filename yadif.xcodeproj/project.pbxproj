@@ -65,6 +65,26 @@
 		1E3E3DA91799646E005F2132 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		1E46934F17C6867C0073A6EF /* yadifdeint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = yadifdeint.cpp; path = source/yadifdeint.cpp; sourceTree = "<group>"; };
 		1E551F5A179950EC00A4135C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		1EC7C7FB18BF4FEE002A246F /* ofxsHWNDInteract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxsHWNDInteract.h; sourceTree = "<group>"; };
+		1EC7C7FD18BF5004002A246F /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
+		1EC7C7FE18BF5004002A246F /* fnPublicOfxExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fnPublicOfxExtensions.h; sourceTree = "<group>"; };
+		1EC7C7FF18BF5004002A246F /* ofxCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxCore.h; path = openfx/include/ofxCore.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80018BF5004002A246F /* ofxDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxDialog.h; path = openfx/include/ofxDialog.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80118BF5004002A246F /* ofxImageEffect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxImageEffect.h; path = openfx/include/ofxImageEffect.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80218BF5004002A246F /* ofxInteract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxInteract.h; path = openfx/include/ofxInteract.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80318BF5004002A246F /* ofxKeySyms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxKeySyms.h; path = openfx/include/ofxKeySyms.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80418BF5004002A246F /* ofxMemory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxMemory.h; path = openfx/include/ofxMemory.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80518BF5004002A246F /* ofxMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxMessage.h; path = openfx/include/ofxMessage.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80618BF5004002A246F /* ofxMultiThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxMultiThread.h; path = openfx/include/ofxMultiThread.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80718BF5004002A246F /* ofxOpenGLRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxOpenGLRender.h; path = openfx/include/ofxOpenGLRender.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80818BF5004002A246F /* ofxParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxParam.h; path = openfx/include/ofxParam.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80918BF5004002A246F /* ofxParametricParam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxParametricParam.h; path = openfx/include/ofxParametricParam.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80A18BF5004002A246F /* ofxPixels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxPixels.h; path = openfx/include/ofxPixels.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80B18BF5004002A246F /* ofxProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxProgress.h; path = openfx/include/ofxProgress.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80C18BF5004002A246F /* ofxProperty.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxProperty.h; path = openfx/include/ofxProperty.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80D18BF5004002A246F /* ofxSonyVegas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxSonyVegas.h; path = openfx/include/ofxSonyVegas.h; sourceTree = SOURCE_ROOT; };
+		1EC7C80E18BF5004002A246F /* ofxTimeLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxTimeLine.h; path = openfx/include/ofxTimeLine.h; sourceTree = SOURCE_ROOT; };
+		1EC7C81018BF5004002A246F /* ofxReadWrite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxReadWrite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +119,26 @@
 		1E3E3D30179960F9005F2132 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				1EC7C7FF18BF5004002A246F /* ofxCore.h */,
+				1EC7C80018BF5004002A246F /* ofxDialog.h */,
+				1EC7C80118BF5004002A246F /* ofxImageEffect.h */,
+				1EC7C80218BF5004002A246F /* ofxInteract.h */,
+				1EC7C80318BF5004002A246F /* ofxKeySyms.h */,
+				1EC7C80418BF5004002A246F /* ofxMemory.h */,
+				1EC7C80518BF5004002A246F /* ofxMessage.h */,
+				1EC7C80618BF5004002A246F /* ofxMultiThread.h */,
+				1EC7C80718BF5004002A246F /* ofxOpenGLRender.h */,
+				1EC7C80818BF5004002A246F /* ofxParam.h */,
+				1EC7C80918BF5004002A246F /* ofxParametricParam.h */,
+				1EC7C80A18BF5004002A246F /* ofxPixels.h */,
+				1EC7C80B18BF5004002A246F /* ofxProgress.h */,
+				1EC7C80C18BF5004002A246F /* ofxProperty.h */,
+				1EC7C80D18BF5004002A246F /* ofxSonyVegas.h */,
+				1EC7C80E18BF5004002A246F /* ofxTimeLine.h */,
+				1EC7C7FC18BF5004002A246F /* nuke */,
+				1EC7C80F18BF5004002A246F /* tuttle */,
 				1E3E3D3117996112005F2132 /* ofxsCore.h */,
+				1EC7C7FB18BF4FEE002A246F /* ofxsHWNDInteract.h */,
 				1E3E3D3217996112005F2132 /* ofxsImageEffect.h */,
 				1E3E3D3317996112005F2132 /* ofxsInteract.h */,
 				1E3E3D3417996112005F2132 /* ofxsLog.h */,
@@ -147,6 +186,25 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		1EC7C7FC18BF5004002A246F /* nuke */ = {
+			isa = PBXGroup;
+			children = (
+				1EC7C7FD18BF5004002A246F /* camera.h */,
+				1EC7C7FE18BF5004002A246F /* fnPublicOfxExtensions.h */,
+			);
+			name = nuke;
+			path = openfx/include/nuke;
+			sourceTree = SOURCE_ROOT;
+		};
+		1EC7C80F18BF5004002A246F /* tuttle */ = {
+			isa = PBXGroup;
+			children = (
+				1EC7C81018BF5004002A246F /* ofxReadWrite.h */,
+			);
+			name = tuttle;
+			path = openfx/include/tuttle;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
