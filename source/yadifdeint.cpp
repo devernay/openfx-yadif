@@ -318,7 +318,7 @@ void PLUGIN_CLASS_FACTORY::describe(OFX::ImageEffectDescriptor &desc)
 
     desc.setLabels(name,name,name);
     desc.setPluginGrouping(group);
-    desc.setPluginDescription("Port of YADIF (Yet Another DeInterlacing Filter) from MPlayer by Michael Niedermayer (http://www.mplayerhq.hu). It check pixels of previous, current and next frames to re-create the missed field by some local adaptive method (edge-directed interpolation) and uses spatial check to prevent most artifacts.");
+    desc.setPluginDescription("Port of YADIF (Yet Another DeInterlacing Filter) from MPlayer by Michael Niedermayer (http://www.mplayerhq.hu). It check pixels of previous, current and next frames to re-create the missed field by some local adaptive method (edge-directed interpolation) and uses spatial check to prevent most artifacts. Port to OFX/Vegas by George Yohng http://yohng.com");
 
     // add supported context
     desc.addSupportedContext(eContextFilter);
