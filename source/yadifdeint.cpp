@@ -19,8 +19,8 @@
 
 #define PLUGIN_CLASS         YadifDeint
 #define PLUGIN_CLASS_FACTORY YadifDeintFactory
-#define PLUGIN_NAME          "Yadif Deinterlace"
-#define PLUGIN_GROUP         ""
+#define PLUGIN_NAME          "Deinterlace (yadif)"
+#define PLUGIN_GROUP         "Time"
 #define PLUGIN_VERSION_MAJOR 1
 #define PLUGIN_VERSION_MINOR 0
 #define PLUGIN_IDENT         "hu.mplayerhq:YadifDeint"
@@ -318,6 +318,7 @@ void PLUGIN_CLASS_FACTORY::describe(OFX::ImageEffectDescriptor &desc)
 
     desc.setLabels(name,name,name);
     desc.setPluginGrouping(group);
+    desc.setPluginDescription("Port of YADIF (Yet Another DeInterlacing Filter) from MPlayer by Michael Niedermayer (http://www.mplayerhq.hu). It check pixels of previous, current and next frames to re-create the missed field by some local adaptive method (edge-directed interpolation) and uses spatial check to prevent most artifacts.");
 
     // add supported context
     desc.addSupportedContext(eContextFilter);
@@ -342,7 +343,7 @@ void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, O
 {
     // Source clip only in the filter context
     // create the mandated source clip
-    ClipDescriptor *srcClip = desc.defineClip("Source");
+    ClipDescriptor *srcClip = desc.defineClip(kOfxImageEffectSimpleSourceClipName);
     srcClip->addSupportedComponent(ePixelComponentRGBA);
     srcClip->addSupportedComponent(ePixelComponentAlpha);
     srcClip->setTemporalClipAccess(true);
@@ -351,7 +352,7 @@ void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, O
     srcClip->setFieldExtraction(OFX::eFieldExtractBoth);
 
     // create the mandated output clip
-    ClipDescriptor *dstClip = desc.defineClip("Output");
+    ClipDescriptor *dstClip = desc.defineClip(kOfxImageEffectOutputClipName);
     dstClip->addSupportedComponent(ePixelComponentRGBA);
     dstClip->addSupportedComponent(ePixelComponentAlpha);
     dstClip->setSupportsTiles(false);
