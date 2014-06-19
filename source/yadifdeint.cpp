@@ -27,14 +27,7 @@
 
 class YadifDeint : public OFX::ImageEffect 
 {
-protected :
-    // do not need to delete these, the ImageEffect is managing them for us
-    OFX::Clip *dstClip_;
-    OFX::Clip *srcClip_;
-
-    OFX::ChoiceParam *fieldOrder, *mode, *parity;
-
-public :
+public:
     YadifDeint(OfxImageEffectHandle handle) : ImageEffect(handle), dstClip_(0), srcClip_(0)
     {
         dstClip_ = fetchClip(kOfxImageEffectOutputClipName);
@@ -45,7 +38,19 @@ public :
         parity = fetchChoiceParam("parity");
     }
 
+private:
     virtual void render(const OFX::RenderArguments &args);
+
+    /** @brief get the clip preferences */
+    virtual void getClipPreferences(OFX::ClipPreferencesSetter &clipPreferences) /* OVERRIDE FINAL */;
+
+private:
+    // do not need to delete these, the ImageEffect is managing them for us
+    OFX::Clip *dstClip_;
+    OFX::Clip *srcClip_;
+
+    OFX::ChoiceParam *fieldOrder, *mode, *parity;
+    
 };
 
 
@@ -306,6 +311,13 @@ void YadifDeint::render(const OFX::RenderArguments &args)
     }
 }
 
+/* Override the clip preferences */
+void
+YadifDeint::getClipPreferences(OFX::ClipPreferencesSetter &clipPreferences)
+{
+    // set the fielding of dstClip_
+    clipPreferences.setOutputFielding(OFX::eFieldNone);
+}
 
 mDeclarePluginFactory(PLUGIN_CLASS_FACTORY, {}, {});
 
