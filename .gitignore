@@ -2,6 +2,8 @@
 build
 project.xcworkspace
 xcuserdata
+*.pbxuser
+*.perspectivev3
 
 *.ofx
 
