@@ -28,10 +28,10 @@
 class YadifDeint : public OFX::ImageEffect 
 {
 public:
-    YadifDeint(OfxImageEffectHandle handle) : ImageEffect(handle), dstClip_(0), srcClip_(0)
+    YadifDeint(OfxImageEffectHandle handle) : ImageEffect(handle), _dstClip(0), _srcClip(0)
     {
-        dstClip_ = fetchClip(kOfxImageEffectOutputClipName);
-        srcClip_ = fetchClip(kOfxImageEffectSimpleSourceClipName);
+        _dstClip = fetchClip(kOfxImageEffectOutputClipName);
+        _srcClip = fetchClip(kOfxImageEffectSimpleSourceClipName);
 
         mode = fetchChoiceParam("mode");
         fieldOrder = fetchChoiceParam("fieldOrder");
@@ -49,8 +49,8 @@ private:
 
 private:
     // do not need to delete these, the ImageEffect is managing them for us
-    OFX::Clip *dstClip_;
-    OFX::Clip *srcClip_;
+    OFX::Clip *_dstClip;
+    OFX::Clip *_srcClip;
 
     OFX::ChoiceParam *fieldOrder, *mode, *parity;
     
@@ -243,14 +243,14 @@ static void filter_plane(int mode, Comp *dst, int dst_stride,
 
 void YadifDeint::render(const OFX::RenderArguments &args)
 {
-    OFX::BitDepthEnum       dstBitDepth    = dstClip_->getPixelDepth();
-    OFX::PixelComponentEnum dstComponents  = dstClip_->getPixelComponents();
+    OFX::BitDepthEnum       dstBitDepth    = _dstClip->getPixelDepth();
+    OFX::PixelComponentEnum dstComponents  = _dstClip->getPixelComponents();
 
-    std::auto_ptr<OFX::Image> dst(dstClip_->fetchImage(args.time));
+    std::auto_ptr<OFX::Image> dst(_dstClip->fetchImage(args.time));
 
-    std::auto_ptr<OFX::Image> src(srcClip_->fetchImage(args.time)),
-                              srcp(srcClip_->fetchImage(args.time-1.0)),
-                              srcn(srcClip_->fetchImage(args.time+1.0));
+    std::auto_ptr<OFX::Image> src(_srcClip->fetchImage(args.time)),
+                              srcp(_srcClip->fetchImage(args.time-1.0)),
+                              srcn(_srcClip->fetchImage(args.time+1.0));
                                                                                         
     OfxRectI rect = dst->getBounds();
 
@@ -353,7 +353,7 @@ void YadifDeint::render(const OFX::RenderArguments &args)
 void
 YadifDeint::getClipPreferences(OFX::ClipPreferencesSetter &clipPreferences)
 {
-    // set the fielding of dstClip_
+    // set the fielding of _dstClip
     clipPreferences.setOutputFielding(OFX::eFieldNone);
 }
 
