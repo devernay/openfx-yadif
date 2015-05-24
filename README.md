@@ -4,7 +4,7 @@ openfx-yadif [![Build Status](https://api.travis-ci.org/devernay/openfx-yadif.pn
 Important note
 ------------
 
-This plugin is now part of the [openfx-misc](http://github.com/devernay/openfx-misc) set of plugin, where it is called "Deinterlace".  [openfx-misc](http://github.com/devernay/openfx-misc) is actively maintained, contains more than 60 plugins, and work on the same OpenFX hosts as openfx-yadif (including Nuke and DaVinci Resolve).
+This plugin is now part of the [openfx-misc](http://github.com/devernay/openfx-misc) set of plugin, where it is called "Deinterlace".  [openfx-misc](http://github.com/devernay/openfx-misc) is actively maintained, contains more than 60 plugins, and works on the same OpenFX hosts as openfx-yadif (including Nuke and DaVinci Resolve).
 
 Description
 ---------
