@@ -13,6 +13,12 @@
 #include <cstring>
 #include <cmath>
 #include <algorithm>
+#ifdef DEBUG
+// Note: only cout & stdout are visible on the console in DaVinci Resolve, don't use cerr/stderr
+#include <iostream>
+#include <cstdio>
+#endif
+
 #include "ofxsImageEffect.h"
 #include "ofxsMultiThread.h"
 #include "ofxsProcessing.H"
@@ -285,11 +291,11 @@ void YadifDeint::render(const OFX::RenderArguments &args)
             case OFX::eBitDepthUByte :
                 filter_plane<4,unsigned char,int>(imode, // mode
                    (unsigned char*)dst->getPixelAddress(0,0),
-                   (unsigned char*)dst->getPixelAddress(0,1)-(unsigned char*)dst->getPixelAddress(0,0),
+                   (int)((unsigned char*)dst->getPixelAddress(0,1)-(unsigned char*)dst->getPixelAddress(0,0)),
                    (unsigned char*)(&*srcp?srcp->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
                    (unsigned char*)src->getPixelAddress(0,0),
                    (unsigned char*)(&*srcn?srcn->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
-                   (unsigned char*)src->getPixelAddress(0,1)-(unsigned char*)src->getPixelAddress(0,0),
+                   (int)((unsigned char*)src->getPixelAddress(0,1)-(unsigned char*)src->getPixelAddress(0,0)),
                    width,height,iparity,ifieldOrder); // parity, tff
      
                 break;
@@ -297,11 +303,11 @@ void YadifDeint::render(const OFX::RenderArguments &args)
             case OFX::eBitDepthFloat : 
                 filter_plane<4,float,float>(imode, // mode
                    (float*)dst->getPixelAddress(0,0),
-                   (float*)dst->getPixelAddress(0,1)-(float*)dst->getPixelAddress(0,0),
+                   (int)((float*)dst->getPixelAddress(0,1)-(float*)dst->getPixelAddress(0,0)),
                    (float*)(&*srcp?srcp->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
                    (float*)src->getPixelAddress(0,0),
                    (float*)(&*srcn?srcn->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
-                   (float*)src->getPixelAddress(0,1)-(float*)src->getPixelAddress(0,0),
+                   (int)((float*)src->getPixelAddress(0,1)-(float*)src->getPixelAddress(0,0)),
                    width,height,iparity,ifieldOrder); // parity, tff
                 break;
 
@@ -316,11 +322,11 @@ void YadifDeint::render(const OFX::RenderArguments &args)
             case OFX::eBitDepthUByte :
                 filter_plane<1,unsigned char,int>(imode, // mode
                    (unsigned char*)dst->getPixelAddress(0,0),
-                   (unsigned char*)dst->getPixelAddress(0,1)-(unsigned char*)dst->getPixelAddress(0,0),
+                   (int)((unsigned char*)dst->getPixelAddress(0,1)-(unsigned char*)dst->getPixelAddress(0,0)),
                    (unsigned char*)(&*srcp?srcp->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
                    (unsigned char*)src->getPixelAddress(0,0),
                    (unsigned char*)(&*srcn?srcn->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
-                   (unsigned char*)src->getPixelAddress(0,1)-(unsigned char*)src->getPixelAddress(0,0),
+                   (int)((unsigned char*)src->getPixelAddress(0,1)-(unsigned char*)src->getPixelAddress(0,0)),
                    width,height,iparity,ifieldOrder); // parity, tff
      
                 break;
@@ -328,11 +334,11 @@ void YadifDeint::render(const OFX::RenderArguments &args)
             case OFX::eBitDepthFloat : 
                 filter_plane<1,float,float>(imode, // mode
                    (float*)dst->getPixelAddress(0,0),
-                   (float*)dst->getPixelAddress(0,1)-(float*)dst->getPixelAddress(0,0),
+                   (int)((float*)dst->getPixelAddress(0,1)-(float*)dst->getPixelAddress(0,0)),
                    (float*)(&*srcp?srcp->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
                    (float*)src->getPixelAddress(0,0),
                    (float*)(&*srcn?srcn->getPixelAddress(0,0):src->getPixelAddress(0,0)), 
-                   (float*)src->getPixelAddress(0,1)-(float*)src->getPixelAddress(0,0),
+                   (int)((float*)src->getPixelAddress(0,1)-(float*)src->getPixelAddress(0,0)),
                    width,height,iparity,ifieldOrder); // parity, tff
                 break;
 
@@ -374,6 +380,7 @@ using namespace OFX;
 
 void PLUGIN_CLASS_FACTORY::describe(OFX::ImageEffectDescriptor &desc)
 {
+    //printf("describe!\n");
     const char *name  = PLUGIN_NAME;
     const char *group = PLUGIN_GROUP;
 
@@ -397,11 +404,12 @@ void PLUGIN_CLASS_FACTORY::describe(OFX::ImageEffectDescriptor &desc)
     desc.setRenderTwiceAlways(false);
     desc.setSupportsMultipleClipPARs(false);
     desc.setRenderThreadSafety(OFX::eRenderFullySafe);
-
+    //printf("describe! OK\n");
 }
 
 void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, OFX::ContextEnum context)
 {
+    //printf("describeInContext!\n");
     // Source clip only in the filter context
     // create the mandated source clip
     ClipDescriptor *srcClip = desc.defineClip(kOfxImageEffectSimpleSourceClipName);
@@ -457,11 +465,14 @@ void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, O
         param->setAnimates(true); // can animate
         page->addChild(*param);
    }
-
+#ifdef DEBUG
+    printf("describeInContext! OK\n");
+#endif
 }
 
 OFX::ImageEffect* PLUGIN_CLASS_FACTORY::createInstance(OfxImageEffectHandle handle, OFX::ContextEnum context)
 {
+    //printf("createInstance!\n");
     return new PLUGIN_CLASS(handle);
 }
 
@@ -469,8 +480,9 @@ namespace OFX { namespace Plugin {
 
 void getPluginIDs(OFX::PluginFactoryArray &ids) 
 {
+    //printf("getPluginIDs!\n");
     static PLUGIN_CLASS_FACTORY p(PLUGIN_IDENT, PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR);
     ids.push_back(&p);
-} 
+}
 
 } } // namespace
