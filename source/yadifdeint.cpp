@@ -407,7 +407,7 @@ void PLUGIN_CLASS_FACTORY::describe(OFX::ImageEffectDescriptor &desc)
     //printf("describe! OK\n");
 }
 
-void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, OFX::ContextEnum context)
+void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, OFX::ContextEnum /*context*/)
 {
     //printf("describeInContext!\n");
     // Source clip only in the filter context
@@ -452,9 +452,9 @@ void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, O
         param->setDefault(2);
         param->setAnimates(true); // can animate
         page->addChild(*param);
-   }
+    }
 
-   {
+    {
         ChoiceParamDescriptor *param = desc.defineChoiceParam("parity");
         param->setLabels("Parity", "Parity", "Parity");
         param->setScriptName("parity");
@@ -464,13 +464,11 @@ void PLUGIN_CLASS_FACTORY::describeInContext(OFX::ImageEffectDescriptor &desc, O
         param->setDefault(0);
         param->setAnimates(true); // can animate
         page->addChild(*param);
-   }
-#ifdef DEBUG
-    printf("describeInContext! OK\n");
-#endif
+    }
+    //printf("describeInContext! OK\n");
 }
 
-OFX::ImageEffect* PLUGIN_CLASS_FACTORY::createInstance(OfxImageEffectHandle handle, OFX::ContextEnum context)
+OFX::ImageEffect* PLUGIN_CLASS_FACTORY::createInstance(OfxImageEffectHandle handle, OFX::ContextEnum /*context*/)
 {
     //printf("createInstance!\n");
     return new PLUGIN_CLASS(handle);
