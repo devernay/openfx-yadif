@@ -17,11 +17,9 @@ http://mplayerhq.hu
 Original port to OFX/Vegas by George Yohng http://yohng.com  (2011/02/07)
 http://www.yohng.com/software/yadifvegas.html
 
-Modifications by Frederic Devernay
+Modifications by Frederic Devernay.
 
-All supplemental code is public domain, and
-Yadif algorithm code part itself is licensed GPL 
-(as the original yadif plugin)
+All supplemental code is public domain, and Yadif algorithm code part itself is licensed LGPL (as the original yadif plugin).
 
 See the comments in this source.
 
