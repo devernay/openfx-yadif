@@ -46,7 +46,7 @@ script:
       exit 0;
     fi
   - make $J CONFIG=debug
-  - make $J nomulti CONFIG=debug
+#  - make $J nomulti CONFIG=debug
 
 addons:
   coverity_scan:
