@@ -1,15 +1,15 @@
-openfx-yadif [![Build Status](https://api.travis-ci.org/devernay/openfx-yadif.png?branch=master)](https://travis-ci.org/devernay/openfx) [![Coverage Status](https://coveralls.io/repos/devernay/openfx-yadif/badge.png?branch=master)](https://coveralls.io/r/devernay/openfx?branch=master) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/devernay/openfx-yadif/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+openfx-yadif [![Build Status](https://api.travis-ci.org/devernay/openfx-yadif.png?branch=master)](https://travis-ci.org/devernay/openfx) [![Coverity Scan Build Status](https://scan.coverity.com/projects/5245/badge.svg)](https://scan.coverity.com/projects/5245 "Coverity Badge")
 ============
 
 Important note
 ------------
 
-This plugin is now part of the [openfx-misc](http://github.com/devernay/openfx-misc) set of plugin, where it is called "Deinterlace". openfx-misc is actively maintained and contains more than 60 plugins.
+This plugin is now part of the [openfx-misc](http://github.com/devernay/openfx-misc) set of plugin, where it is called "Deinterlace".  [openfx-misc](http://github.com/devernay/openfx-misc) is actively maintained, contains more than 60 plugins, and work on the same OpenFX hosts as openfx-yadif (including Nuke and DaVinci Resolve).
 
 Description
 ---------
 
-A port of Yadif (yet another deinterlacing filter) to OpenFX (for use with Sony Vegas, Nuke, Scratch, etc.)
+A port of Yadif (yet another deinterlacing filter) to OpenFX (for use with Sony Vegas, Nuke, Scratch, DaVinci Resolve, etc.)
 
 http://avisynth.org.ru/yadif/yadif.html
 http://mplayerhq.hu
