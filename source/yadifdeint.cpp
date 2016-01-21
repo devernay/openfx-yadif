@@ -474,13 +474,5 @@ OFX::ImageEffect* PLUGIN_CLASS_FACTORY::createInstance(OfxImageEffectHandle hand
     return new PLUGIN_CLASS(handle);
 }
 
-namespace OFX { namespace Plugin { 
-
-void getPluginIDs(OFX::PluginFactoryArray &ids) 
-{
-    //printf("getPluginIDs!\n");
-    static PLUGIN_CLASS_FACTORY p(PLUGIN_IDENT, PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR);
-    ids.push_back(&p);
-}
-
-} } // namespace
+static PLUGIN_CLASS_FACTORY p(PLUGIN_IDENT, PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR);
+mRegisterPluginFactoryInstance(p)
